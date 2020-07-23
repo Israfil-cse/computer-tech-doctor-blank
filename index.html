@@ -9,7 +9,10 @@
 </head>
 <body>
     <div id="login-area">
-        <h1 class="text-center">Welcome to Computer_Tech_Doctor_Bank</h1>
+        <h1 class="text-center responsive-h1">Welcome to Computer_Tech_Doctor_Bank</h1>
+        <figure class="text-center my-5">
+            <img src="img/israfil2.png" alt="" class="img-fluid " width="300" height="300">
+        </figure>
         <div class="submit-area">
             <h4>login</h4>
             <input type="text" placeholder="Drop your Email" name="" id="" class="form-control">
@@ -22,19 +25,19 @@
 
     <div id="transation_area">
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-4 responsive-colunm">
                 <div class="Deposit status">
                     <h5>Deposit</h5>
                     <h2>$ <span id="currentDeposit">00</span></h2>
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4 responsive-colunm">
                 <div class="Withdraw status">
                     <h5>Withdraw</h5>
-                    <h2>$00</h2>
+                    <h2>$<span id="currentWithdraw">00</span></h2>
                 </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4 responsive-colunm">
                 <div class="Blance status">
                     <h5>Blance</h5>
                     <h2>$<span id="currentBlance">1200</span></h2>
@@ -55,9 +58,9 @@
                 <div class="col-md-6">
                     <div class="submit-area">
                     <h4>Withdraw</h4>
-                    <input type="number" placeholder="$ amount you want to Withdraw" class="form-control">
+                    <input id="withdrawAmount" type="number" placeholder="$ amount you want to Withdraw" class="form-control">
                     <br>
-                    <button class="btn btn-success">Withdraw</button>
+                    <button id="addWithdraw" class="btn btn-success">Withdraw</button>
                 </div>
             </div>
         </div>
@@ -77,8 +80,7 @@
 
         const depositBtn = document.getElementById('addDeposit');
         depositBtn.addEventListener('click', function(){
-           const depositAmount = document.getElementById('depositAmount').value;
-           const depositNumber = parseFloat(depositAmount);
+            const depositNumber = getInputNumber('depositAmount');
 
            allInOne("currentDeposit", depositNumber);
            allInOne("currentBlance", depositNumber);
@@ -86,13 +88,28 @@
 
             document.getElementById('depositAmount').value = "";
         })
+//withdraw
+        const withdrawBtn = document.getElementById('addWithdraw');
+        withdrawBtn.addEventListener('click', function(){
+            const withdrawNumber = getInputNumber('withdrawAmount');
+            allInOne('currentWithdraw',withdrawNumber);
+            allInOne('currentBlance',-1 * withdrawNumber);
+            
+            document.getElementById('withdrawAmount').value = "";
+        })
 
+
+        function getInputNumber(id){
+            const inputAmount = document.getElementById(id).value;
+            const inputAmountNumber = parseFloat(inputAmount);
+            return inputAmountNumber;
+        }
 
         function allInOne(id, depositNumber){
-            const currentBlance = document.getElementById("id").innerText;
+            const currentBlance = document.getElementById(id).innerText;
             const currentBlanceNumber = parseFloat(currentBlance);
             const totalBlance = depositNumber + currentBlanceNumber;
-            document.getElementById("id").innerText = totalBlance;
+            document.getElementById(id).innerText = totalBlance;
         }
 
 

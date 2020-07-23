@@ -25,3 +25,28 @@ body{
     padding: 20px;
     border-radius: 10px;;
 }
+
+/* responsive area */
+@media (max-width:770px){
+    .responsive-colunm{
+        margin-bottom: 20px;
+    }
+}
+@media (max-width:670px){
+.responsive-h1{
+    font-size: 30px;
+}
+img{
+    height: 170px;
+    width: 170px;
+}
+}
+@media (max-width:400px){
+    .responsive-h1{
+        font-size: 20px;
+    }
+    img{
+        height: 100px;
+        width: 100px;
+    }
+    }
